@@ -3,25 +3,25 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager> {
-    [SerializeField] private GameObject confirmPanel;   // È®ÀÎÃ¢ ÆĞ³Î
-    [SerializeField] private GameObject signInPanel;    // ·Î±×ÀÎ ÆĞ³Î
-    [SerializeField] private GameObject registerPanel;  // È¸¿ø°¡ÀÔ ÆĞ³Î
+    [SerializeField] private GameObject confirmPanel;   // í™•ì¸ì°½ íŒ¨ë„
+    [SerializeField] private GameObject signInPanel;    // ë¡œê·¸ì¸ íŒ¨ë„
+    [SerializeField] private GameObject registerPanel;  // íšŒì›ê°€ì… íŒ¨ë„
 
     private Constants.GameType _gameType;
 
-    // PanelÀ» ¶ç¿ì±â À§ÇÑ Canvas ÇÒ´ç
+    // Panelì„ ë„ìš°ê¸° ìœ„í•œ Canvas í• ë‹¹
     private Canvas _canvas;
 
     // Game Logic
     private GameLogic _gameLogic;
 
-    // Game ¾ÀÀÇ UI¸¦ ´ã´çÇÏ´Â °´Ã¼
+    // Game ì”¬ì˜ UIë¥¼ ë‹´ë‹¹í•˜ëŠ” ê°ì²´
     private GameUIController _gameUIController;
 
 
 
     /// <summary>
-    /// Maint¿¡¼­ Game SceneÀ¸·Î ÀüÈ¯½Ã È£ÃâµÉ ¸Ş¼­µå
+    /// Mainì—ì„œ Game Sceneìœ¼ë¡œ ì „í™˜ì‹œ í˜¸ì¶œë  ë©”ì„œë“œ
     /// </summary>
     public void ChangeToGameScene(Constants.GameType gameType) {
         _gameType = gameType;
@@ -29,7 +29,7 @@ public class GameManager : Singleton<GameManager> {
     }
 
     /// <summary>
-    /// Game¿¡¼­ Main SceneÀ¸·Î ÀüÈ¯ ½Ã È£ÃâµÉ ¸Ş¼­µå
+    /// Gameì—ì„œ Main Sceneìœ¼ë¡œ ì „í™˜ ì‹œ í˜¸ì¶œë  ë©”ì„œë“œ
     /// </summary>
     public void ChangeToMainScene() {
         _gameLogic = null;
@@ -37,7 +37,7 @@ public class GameManager : Singleton<GameManager> {
     }
 
     /// <summary>
-    /// Confirm PanelÀ» ¶ç¿ì´Â ¸Ş¼­µå
+    /// Confirm Panelì„ ë„ìš°ëŠ” ë©”ì„œë“œ
     /// </summary>
     /// <param name="message"></param>
     public void OpenConfirmPanel(string message, ConfirmPanelController.OnConfirmButtonClicked onConfirmButtonClicked) {
@@ -48,31 +48,31 @@ public class GameManager : Singleton<GameManager> {
     }
 
     /// <summary>
-    /// Game Scene¿¡¼­ ÅÏÀ» Ç¥½ÃÇÏ´Â UI¸¦ Á¦¾îÇÏ´Â ÇÔ¼ö
+    /// Game Sceneì—ì„œ í„´ì„ í‘œì‹œí•˜ëŠ” UIë¥¼ ì œì–´í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <param name="type"></param>
     public void SetGameTurnPanel(GameUIController.GameTurnPanelType type) {
         _gameUIController.SetGameTurnPanel(type);
     }
 
-    // ¾À ·Îµå½Ã È£ÃâµÇ´Â ÇÔ¼ö
+    // ì”¬ ë¡œë“œì‹œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
     protected override void OnSceneLoad(Scene scene, LoadSceneMode mode) {
         _canvas = FindFirstObjectByType<Canvas>();
 
         if (scene.name == "Game") {
-            // Block ÃÊ±âÈ­
+            // Block ì´ˆê¸°í™”
             var blockContoroller = FindFirstObjectByType<BlockController>();
             if (blockContoroller != null) {
                 blockContoroller.InitBlocks();
             }
 
-            // Game UI Controller ÇÒ´ç ¹× ÃÊ±âÈ­
+            // Game UI Controller í• ë‹¹ ë° ì´ˆê¸°í™”
             _gameUIController = FindFirstObjectByType<GameUIController>();
             if (_gameUIController != null) {
                 _gameUIController.SetGameTurnPanel(GameUIController.GameTurnPanelType.None);
             }
 
-            // GameLogic »ı¼º
+            // GameLogic ìƒì„±
             if (_gameLogic == null) {
                 _gameLogic = new GameLogic(blockContoroller, _gameType);
             }
