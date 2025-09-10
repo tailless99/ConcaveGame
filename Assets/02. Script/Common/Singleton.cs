@@ -24,7 +24,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : Component
         if(_instance == null) {
             _instance = this as T;
             DontDestroyOnLoad(gameObject);
-            // ¾À ÀüÈ¯½Ã¿¡ È£ÃâµÇ´Â ¾×¼Ç ¸Å¼­µå¸¦ ÇÒ´ç
+            // ì”¬ ì „í™˜ì‹œì— í˜¸ì¶œë˜ëŠ” ì•¡ì…˜ ë§¤ì„œë“œë¥¼ í• ë‹¹
             SceneManager.sceneLoaded += OnSceneLoad;
         }
         else {

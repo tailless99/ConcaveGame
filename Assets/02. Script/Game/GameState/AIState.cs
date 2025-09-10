@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AIState : BasePlayerState {
     public override void OnEnter(GameLogic gameLogic) {
-        // ÅÏ Ç¥½Ã °»½Å
+        // í„´ í‘œì‹œ ê°±ì‹ 
         GameManager.Instance.SetGameTurnPanel(GameUIController.GameTurnPanelType.BTurn);
 
         var board = gameLogic.GetBoard();

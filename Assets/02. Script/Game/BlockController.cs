@@ -8,11 +8,11 @@ public class BlockController : MonoBehaviour
     public OnBlockClicked OnBlockClickedDelegate;
 
 
-    // 1. ¸ğµç ºí·ÏÀ» ÃÊ±âÈ­
+    // 1. ëª¨ë“  ë¸”ë¡ì„ ì´ˆê¸°í™”
     public void InitBlocks() {
         for (int i = 0; i < blocks.Length; i++)
             blocks[i].InitMarker(i, (blockIndex) => {
-                // Æ¯Á¤ BlockÀÌ Å¬¸¯ µÈ »óÅÂ¿¡ ´ëÇÑ Ã³¸®
+                // íŠ¹ì • Blockì´ í´ë¦­ ëœ ìƒíƒœì— ëŒ€í•œ ì²˜ë¦¬
                 var row = blockIndex / Constants.BlockColumnCount;
                 var col = blockIndex % Constants.BlockColumnCount;
                 
@@ -20,16 +20,16 @@ public class BlockController : MonoBehaviour
             });
     }
 
-    // 2. Æ¯Á¤ Block¿¡ ¸¶Ä¿ Ç¥½Ã
+    // 2. íŠ¹ì • Blockì— ë§ˆì»¤ í‘œì‹œ
     public void PlaceMarker(Block.MarkerType markerType, int row, int col) {
-        // row, col >> index º¯È¯
+        // row, col >> index ë³€í™˜
         var blockIndex = row * Constants.BlockColumnCount + col;
         
         blocks[blockIndex].Setmarker(markerType);
     }
 
-    // 3. Æ¯Á¤ BlockÀÇ ¹è°æ»öÀ» ¼³Á¤
+    // 3. íŠ¹ì • Blockì˜ ë°°ê²½ìƒ‰ì„ ì„¤ì •
     public void SetBlockColor() {
-        // TODO : °ÔÀÓ ·ÎÁ÷ÀÌ ¿Ï¼ºµÇ¸é ±¸Çö
+        // TODO : ê²Œì„ ë¡œì§ì´ ì™„ì„±ë˜ë©´ êµ¬í˜„
     }
 }
