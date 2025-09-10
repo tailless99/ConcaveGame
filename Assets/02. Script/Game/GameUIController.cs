@@ -9,7 +9,7 @@ public class GameUIController : MonoBehaviour
     public enum GameTurnPanelType { None, ATurn, BTurn }
 
     public void OnClickBackButton() {
-        GameManager.Instance.OpenConfirmPanel("°ÔÀÓÀ» Á¾·áÇÏ½Ã°Ú½À´Ï±î?", () => {
+        GameManager.Instance.OpenConfirmPanel("ê²Œìž„ì„ ì¢…ë£Œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?", () => {
             GameManager.Instance.ChangeToMainScene();
         });
     }

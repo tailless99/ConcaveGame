@@ -10,7 +10,7 @@ public class ConfirmPanelController : PanelController {
 
 
     /// <summary>
-    /// Confirm PanelÀ» Ç¥½ÃÇÏ´Â ¸Ş¼­µå
+    /// Confirm Panelì„ í‘œì‹œí•˜ëŠ” ë©”ì„œë“œ
     /// </summary>
     /// <param name="message"></param>
     public void Show(string message, OnConfirmButtonClicked onConfirmButtonClicked) {
@@ -21,7 +21,7 @@ public class ConfirmPanelController : PanelController {
     }
 
     /// <summary>
-    /// È®ÀÎ ¹öÆ° Å¬¸¯ ½Ã, È£ÃâµÇ´Â ¸Ş¼­µå
+    /// í™•ì¸ ë²„íŠ¼ í´ë¦­ ì‹œ, í˜¸ì¶œë˜ëŠ” ë©”ì„œë“œ
     /// </summary>
     public void OnClickConfirmButton() {
         Hide(() => {
@@ -31,7 +31,7 @@ public class ConfirmPanelController : PanelController {
     }
 
     /// <summary>
-    /// X ¹öÆ° Å¬¸¯ ½Ã, È£ÃâµÇ´Â ¸Ş¼­µå
+    /// X ë²„íŠ¼ í´ë¦­ ì‹œ, í˜¸ì¶œë˜ëŠ” ë©”ì„œë“œ
     /// </summary>
     public void OnClickCloseButton() {
         Hide();

@@ -3,14 +3,14 @@ using UnityEngine;
 
 [RequireComponent(typeof(CanvasGroup))]
 
-// ÆË¾÷ÀÇ °øÅëµÈ ºÎºĞÀ» ´ã´Â ÄÁÆ®·Ñ·¯
+// íŒì—…ì˜ ê³µí†µëœ ë¶€ë¶„ì„ ë‹´ëŠ” ì»¨íŠ¸ë¡¤ëŸ¬
 public class PanelController : MonoBehaviour {
-    // ÆË¾÷Ã¢ RectTransform
+    // íŒì—…ì°½ RectTransform
     [SerializeField] private RectTransform panelRectTransform;
 
     private CanvasGroup _backgroundCanvasGroup;
 
-    // PanelÀÌ HideµÉ ¶§ ÇØ¾ßÇÒ µ¿ÀÛÀ» Ã³¸®ÇÏ´Â ´ë¸®ÀÚ
+    // Panelì´ Hideë  ë•Œ í•´ì•¼í•  ë™ì‘ì„ ì²˜ë¦¬í•˜ëŠ” ëŒ€ë¦¬ì
     public delegate void PanelControllerHideDelegate();
     
     private void Awake() {
@@ -18,28 +18,28 @@ public class PanelController : MonoBehaviour {
     }
 
     /// <summary>
-    /// Panel Ç¥½Ã
+    /// Panel í‘œì‹œ
     /// </summary>
     public virtual void Show() {
         _backgroundCanvasGroup.alpha = 0;
         panelRectTransform.localScale = Vector3.zero;
 
-        // DoTweenÀ» ÀÌ¿ëÇÑ Fade
+        // DoTweenì„ ì´ìš©í•œ Fade
         _backgroundCanvasGroup.DOFade(1f, 0.3f).SetEase(Ease.Linear);
         panelRectTransform.DOScale(1, 0.3f).SetEase(Ease.OutBack);
 
-        // ¿ä¼Ò È°¼ºÈ­
+        // ìš”ì†Œ í™œì„±í™”
         gameObject.SetActive(true);
     }
 
     /// <summary>
-    /// Panel ¼û±â±â
+    /// Panel ìˆ¨ê¸°ê¸°
     /// </summary>
     public void Hide(PanelControllerHideDelegate hideDelegate = null) {
         _backgroundCanvasGroup.alpha = 1;
         panelRectTransform.localScale = Vector3.one;
 
-        // DoTweenÀ» ÀÌ¿ëÇÑ Fade
+        // DoTweenì„ ì´ìš©í•œ Fade
         _backgroundCanvasGroup.DOFade(0, 0.3f).SetEase(Ease.Linear);
         panelRectTransform.DOScale(0, 0.3f).SetEase(Ease.InBack).OnComplete(() => {
             hideDelegate?.Invoke();

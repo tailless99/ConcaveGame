@@ -12,13 +12,13 @@ public class Block : MonoBehaviour
     private OnBlockClicked _onBlockClicked;
 
 
-    // ¸¶Ä¿ Å¸ÀÔ
+    // ë§ˆì»¤ íƒ€ì…
     public enum MarkerType { None, O, X }
 
     // Block Index
     private int _blockIndex;
 
-    // BlockÀÇ »ö º¯°æÀ» À§ÇÑ BlockÀÇ Sprite Renderer
+    // Blockì˜ ìƒ‰ ë³€ê²½ì„ ìœ„í•œ Blockì˜ Sprite Renderer
     private SpriteRenderer _spriteRenderer;
     private Color _defaultBlockColor;
 
@@ -29,7 +29,7 @@ public class Block : MonoBehaviour
     }
 
 
-    // 1. ÃÊ±âÈ­
+    // 1. ì´ˆê¸°í™”
     public void InitMarker(int blockIndex, OnBlockClicked onBlockClicked) {
         _blockIndex = blockIndex;
         Setmarker(MarkerType.None);
@@ -37,7 +37,7 @@ public class Block : MonoBehaviour
         _onBlockClicked = onBlockClicked;
     }
 
-    // 2. ¸¶Ä¿ ¼³Á¤
+    // 2. ë§ˆì»¤ ì„¤ì •
     public void Setmarker(MarkerType type) {
         switch (type) {
             case MarkerType.None:
@@ -52,12 +52,12 @@ public class Block : MonoBehaviour
         }
     }
 
-    // 3. ÄÃ·¯ ¼³Á¤
+    // 3. ì»¬ëŸ¬ ì„¤ì •
     public void SetBlockColor(Color color) {
         _spriteRenderer.color = color;
     }
 
-    // 4. ºí·° ÅÍÄ¡
+    // 4. ë¸”ëŸ­ í„°ì¹˜
     private void OnMouseUpAsButton() {
         if (EventSystem.current.IsPointerOverGameObject()) {
             return;

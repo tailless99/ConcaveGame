@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public static class TicTacToeAI {
-    // ÇöÀç »óÅÂ¸¦ Àü´ŞÇÏ¸é ´ÙÀ½ ÃÖÀûÀÇ ¼ö¸¦ ¹İÈ¯ÇÏ´Â ¸Ş¼­µå
+    // í˜„ì¬ ìƒíƒœë¥¼ ì „ë‹¬í•˜ë©´ ë‹¤ìŒ ìµœì ì˜ ìˆ˜ë¥¼ ë°˜í™˜í•˜ëŠ” ë©”ì„œë“œ
     public static (int row, int col)? GetBestMove(Constants.PlayerType[,] board) {
         float bestScore = -1000;
         (int row, int col) movePosition = (-1, -1);
@@ -28,7 +28,7 @@ public static class TicTacToeAI {
     }
 
     private static float DoMiniMax(Constants.PlayerType[,] board, int depth, bool isMaximizing) {
-        // °ÔÀÓ Á¾·á »óÅÂ Ã¼Å©
+        // ê²Œì„ ì¢…ë£Œ ìƒíƒœ ì²´í¬
         if (CheckGameWin(Constants.PlayerType.PlayerA, board))
             return -10 + depth;
         if (CheckGameWin(Constants.PlayerType.PlayerB, board))
@@ -66,7 +66,7 @@ public static class TicTacToeAI {
         }
     }
 
-    // ºñ°å´ÂÁö È®ÀÎ
+    // ë¹„ê²¼ëŠ”ì§€ í™•ì¸
     public static bool CheckGameDraw(Constants.PlayerType[,] board) {
         for (var row = 0; row < board.GetLength(0); row++) {
             for (var col = 0; col < board.GetLength(1); col++) {
@@ -76,21 +76,21 @@ public static class TicTacToeAI {
         return true;
     }
 
-    // °ÔÀÓ ½Â¸® È®ÀÎ
+    // ê²Œì„ ìŠ¹ë¦¬ í™•ì¸
     public static bool CheckGameWin(Constants.PlayerType playerType, Constants.PlayerType[,] board) {
-        // Col Ã¼Å© ÈÄ ÀÏÀÚ¸é True
+        // Col ì²´í¬ í›„ ì¼ìë©´ True
         for (var row = 0; row < board.GetLength(0); row++) {
             if (board[row, 0] == playerType && board[row, 1] == playerType && board[row, 2] == playerType)
                 return true;
         }
 
-        // Row Ã¼Å© ÈÄ ÀÏÀÚ¸é True
+        // Row ì²´í¬ í›„ ì¼ìë©´ True
         for (var col = 0; col < board.GetLength(1); col++) {
             if (board[0, col] == playerType && board[1, col] == playerType && board[2, col] == playerType)
                 return true;
         }
 
-        // ´ë°¢¼± ÀÏÀÚ¸é True
+        // ëŒ€ê°ì„  ì¼ìë©´ True
         if (board[0, 0] == playerType && board[1, 1] == playerType && board[2, 2] == playerType)
             return true;
 
