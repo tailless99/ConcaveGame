@@ -2035,8 +2035,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   confirmPanel: {fileID: 1811821152304400205, guid: 81c0faa7b06b25541b91f251b1b6fde3, type: 3}
-  signInPanel: {fileID: 0}
-  registerPanel: {fileID: 0}
+  signInPanel: {fileID: 1811821152304400205, guid: b29f14b226352344bb04bcd51d0bf1d7, type: 3}
+  registerPanel: {fileID: 1811821152304400205, guid: 22d3c63d1f9342844a675580fc422eca, type: 3}
 --- !u!4 &1293430830
 Transform:
   m_ObjectHideFlags: 0
