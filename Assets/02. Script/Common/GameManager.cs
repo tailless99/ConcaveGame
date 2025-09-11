@@ -21,7 +21,7 @@ public class GameManager : Singleton<GameManager> {
 
 
     /// <summary>
-    /// Maint에서 Game Scene으로 전환시 호출될 메서드
+    /// Main에서 Game Scene으로 전환시 호출될 메서드
     /// </summary>
     public void ChangeToGameScene(Constants.GameType gameType) {
         _gameType = gameType;
