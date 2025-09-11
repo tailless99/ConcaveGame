@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class GameLogic
 {
-    public BlockController BlockController;     // BlockÀ» Ã³¸®ÇÒ °´Ã¼
+    public BlockController BlockController;     // Blockì„ ì²˜ë¦¬í•  ê°ì²´
 
-    private Constants.PlayerType[,] _board;     // º¸µåÀÇ »óÅÂ Á¤º¸
+    private Constants.PlayerType[,] _board;     // ë³´ë“œì˜ ìƒíƒœ ì •ë³´
 
     public BasePlayerState firstPlayerState;    // Player A
     public BasePlayerState secondPlayerState;   // Player B
-    public BasePlayerState _currentPlayerState; // ÇöÀç ÅÏÀÇ Player
+    public BasePlayerState _currentPlayerState; // í˜„ì¬ í„´ì˜ Player
 
 
     public enum GameResult { None, Win, Lose, Draw }
@@ -18,10 +18,10 @@ public class GameLogic
     public GameLogic(BlockController blockController, Constants.GameType gameType) {
         BlockController = blockController;
 
-        // º¸µåÀÇ »óÅÂ Á¤º¸ ÃÊ±âÈ­
+        // ë³´ë“œì˜ ìƒíƒœ ì •ë³´ ì´ˆê¸°í™”
         _board = new Constants.PlayerType[Constants.BlockColumnCount, Constants.BlockColumnCount];
 
-        // Game Type ÃÊ±âÈ­
+        // Game Type ì´ˆê¸°í™”
         switch (gameType) {
             case Constants.GameType.SinglePlay:
                 firstPlayerState = new PlayerState(true);
@@ -35,17 +35,17 @@ public class GameLogic
                 break;
         }
         
-        // °ÔÀÓ ½ÃÀÛ
+        // ê²Œì„ ì‹œì‘
         SetState(firstPlayerState);
     }
 
-    // ¿ÜºÎ¿¡¼­ º¸µå¸¦ °¡Á®¿Ã ¼ö ÀÖµµ·Ï ¹İÈ¯
+    // ì™¸ë¶€ì—ì„œ ë³´ë“œë¥¼ ê°€ì ¸ì˜¬ ìˆ˜ ìˆë„ë¡ ë°˜í™˜
     public Constants.PlayerType[,] GetBoard() {
         return _board;
     }
 
-    // ÅÏÀÌ ¹Ù²ğ ¶§, ±âÁ¸ ÁøÇàÇÏ´ø »óÅÂ¸¦ ExitÇÏ°í
-    // ÀÌ¹ø ÅÏÀÇ »óÅÂ¸¦ _currentPlayerState·Î º¯°æ
+    // í„´ì´ ë°”ë€” ë•Œ, ê¸°ì¡´ ì§„í–‰í•˜ë˜ ìƒíƒœë¥¼ Exití•˜ê³ 
+    // ì´ë²ˆ í„´ì˜ ìƒíƒœë¥¼ _currentPlayerStateë¡œ ë³€ê²½
     // 
     public void SetState(BasePlayerState state) {
         _currentPlayerState?.OnExit(this);
@@ -53,7 +53,7 @@ public class GameLogic
         _currentPlayerState?.OnEnter(this);
     }
 
-    // _board ¹è¿­¿¡ »õ·Î¿î Marker °ªÀ» ÇÒ´ç
+    // _board ë°°ì—´ì— ìƒˆë¡œìš´ Marker ê°’ì„ í• ë‹¹
     public bool SetNewBoardValue(Constants.PlayerType playerType, int row, int col) {
         if (_board[row, col] != Constants.PlayerType.None) return false;
         
@@ -71,26 +71,26 @@ public class GameLogic
         return false;
     }
 
-    // Game Over Ã³¸®
+    // Game Over ì²˜ë¦¬
     public void EndGame(GameResult gameResult) {
         SetState(null);
         firstPlayerState = null;
         secondPlayerState = null;
 
-        // À¯Àú¿¡°Ô Game Over Ç¥½Ã
-        GameManager.Instance.OpenConfirmPanel("°ÔÀÓ ¿À¹ö", () => {
+        // ìœ ì €ì—ê²Œ Game Over í‘œì‹œ
+        GameManager.Instance.OpenConfirmPanel("ê²Œì„ ì˜¤ë²„", () => {
             GameManager.Instance.ChangeToMainScene();
         });
     }
 
-    // °ÔÀÓÀÇ °á°ú È®ÀÎ
+    // ê²Œì„ì˜ ê²°ê³¼ í™•ì¸
     public GameResult CheckGameResult() {
         
-        if(TicTacToeAI.CheckGameWin(Constants.PlayerType.PlayerA, _board)) return GameResult.Win; // ÇÃ·¹ÀÌ¾î A ½Â¸® Ã¼Å©
-        if(TicTacToeAI.CheckGameWin(Constants.PlayerType.PlayerB, _board)) return GameResult.Lose; // ÇÃ·¹ÀÌ¾î B ½Â¸® Ã¼Å©
-        if(TicTacToeAI.CheckGameDraw(_board)) return GameResult.Draw; // ºñ°å´ÂÁö È®ÀÎ
+        if(TicTacToeAI.CheckGameWin(Constants.PlayerType.PlayerA, _board)) return GameResult.Win; // í”Œë ˆì´ì–´ A ìŠ¹ë¦¬ ì²´í¬
+        if(TicTacToeAI.CheckGameWin(Constants.PlayerType.PlayerB, _board)) return GameResult.Lose; // í”Œë ˆì´ì–´ B ìŠ¹ë¦¬ ì²´í¬
+        if(TicTacToeAI.CheckGameDraw(_board)) return GameResult.Draw; // ë¹„ê²¼ëŠ”ì§€ í™•ì¸
 
-        // ´Ù ¾Æ´Ï¶ó¸é, ¾ÆÁ÷ ½ÂºÎÁßÀÌ¹Ç·Î None »óÅÂ ¹İÈ¯
+        // ë‹¤ ì•„ë‹ˆë¼ë©´, ì•„ì§ ìŠ¹ë¶€ì¤‘ì´ë¯€ë¡œ None ìƒíƒœ ë°˜í™˜
         return GameResult.None;
     }
 }

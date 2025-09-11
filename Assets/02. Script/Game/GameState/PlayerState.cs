@@ -6,15 +6,15 @@ public class PlayerState : BasePlayerState {
     private Constants.PlayerType _playerType;
 
 
-    // »ý¼ºÀÚ ÃÊ±âÈ­
+    // ìƒì„±ìž ì´ˆê¸°í™”
     public PlayerState(bool isFirstPlayer) {
         _isFirstPlayer = isFirstPlayer;
         _playerType = _isFirstPlayer ? Constants.PlayerType.PlayerA : Constants.PlayerType.PlayerB;
     }
 
-    #region ÇÊ¼ö ¸Þ¼­µå
+    #region í•„ìˆ˜ ë©”ì„œë“œ
     public override void OnEnter(GameLogic gameLogic) {
-        // 1. First PlayerÀÎÁö È®ÀÎÇØ¼­ °ÔÀÓ UI¿¡ ÇöÀç ÅÏ Ç¥½Ã
+        // 1. First Playerì¸ì§€ í™•ì¸í•´ì„œ ê²Œìž„ UIì— í˜„ìž¬ í„´ í‘œì‹œ
         if (_isFirstPlayer) {
             GameManager.Instance.SetGameTurnPanel(GameUIController.GameTurnPanelType.ATurn);
         }
@@ -22,10 +22,10 @@ public class PlayerState : BasePlayerState {
             GameManager.Instance.SetGameTurnPanel(GameUIController.GameTurnPanelType.BTurn);
         }
         
-        // 2. Block Controller¿¡°Ô ÇØ¾ß ÇÒ ÀÏÀ» Àü´Þ
+        // 2. Block Controllerì—ê²Œ í•´ì•¼ í•  ì¼ì„ ì „ë‹¬
         gameLogic.BlockController.OnBlockClickedDelegate = (row, col) => {
-            // BlockÀÌ ÅÍÄ¡ µÉ ¶§±îÁö ±â´Ù·È´Ù°¡
-            // ÅÍÄ¡ µÇ¸é Ã³¸®ÇÒ ÀÏ
+            // Blockì´ í„°ì¹˜ ë  ë•Œê¹Œì§€ ê¸°ë‹¤ë ¸ë‹¤ê°€
+            // í„°ì¹˜ ë˜ë©´ ì²˜ë¦¬í•  ì¼
             HandleMove(gameLogic, row, col);
         };
     }
