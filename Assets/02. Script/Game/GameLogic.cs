@@ -20,7 +20,6 @@ public class GameLogic
 
         // 보드의 상태 정보 초기화
         _board = new Constants.PlayerType[Constants.BlockColumnCount, Constants.BlockColumnCount];
-
         // Game Type 초기화
         switch (gameType) {
             case Constants.GameType.SinglePlay:
@@ -59,12 +58,12 @@ public class GameLogic
         
         if (playerType == Constants.PlayerType.PlayerA) {
             _board[row, col] = playerType;
-            BlockController.PlaceMarker(Block.MarkerType.O, row, col);
+            BlockController.PlaceMarker(Block.MarkerType.blackMarker, row, col);
             return true;
         }
         else if(playerType == Constants.PlayerType.PlayerB) {
             _board[row, col] = playerType;
-            BlockController.PlaceMarker(Block.MarkerType.X, row, col);
+            BlockController.PlaceMarker(Block.MarkerType.whiteMarker, row, col);
             return true;
         }
 
@@ -85,7 +84,6 @@ public class GameLogic
 
     // 게임의 결과 확인
     public GameResult CheckGameResult() {
-        
         if(TicTacToeAI.CheckGameWin(Constants.PlayerType.PlayerA, _board)) return GameResult.Win; // 플레이어 A 승리 체크
         if(TicTacToeAI.CheckGameWin(Constants.PlayerType.PlayerB, _board)) return GameResult.Lose; // 플레이어 B 승리 체크
         if(TicTacToeAI.CheckGameDraw(_board)) return GameResult.Draw; // 비겼는지 확인

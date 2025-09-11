@@ -1,19 +1,20 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class Block : MonoBehaviour
 {
-    [SerializeField] private Sprite oSprite;
-    [SerializeField] private Sprite xSprite;
-    [SerializeField] private SpriteRenderer markerSpriteRenderer;
+    [SerializeField] private Sprite blackMarkerSprite;
+    [SerializeField] private Sprite whiteMarkerSprite;
+    [SerializeField] private Image markerSpriteRenderer;
 
     public delegate void OnBlockClicked(int index);
     private OnBlockClicked _onBlockClicked;
 
 
     // 마커 타입
-    public enum MarkerType { None, O, X }
+    public enum MarkerType { None, blackMarker, whiteMarker }
 
     // Block Index
     private int _blockIndex;
@@ -42,12 +43,15 @@ public class Block : MonoBehaviour
         switch (type) {
             case MarkerType.None:
                 markerSpriteRenderer.sprite = null;
+                markerSpriteRenderer.color = new Color(1, 1, 1, 0);
                 break;
-            case MarkerType.O:
-                markerSpriteRenderer.sprite = oSprite;
+            case MarkerType.blackMarker:
+                markerSpriteRenderer.sprite = blackMarkerSprite;
+                markerSpriteRenderer.color = new Color(1, 1, 1, 1);
                 break;
-            case MarkerType.X:
-                markerSpriteRenderer.sprite = xSprite;
+            case MarkerType.whiteMarker:
+                markerSpriteRenderer.sprite = whiteMarkerSprite;
+                markerSpriteRenderer.color = new Color(1, 1, 1, 1);
                 break;
         }
     }
@@ -58,10 +62,7 @@ public class Block : MonoBehaviour
     }
 
     // 4. 블럭 터치
-    private void OnMouseUpAsButton() {
-        if (EventSystem.current.IsPointerOverGameObject()) {
-            return;
-        }
+    public void OnMouseClick() {
         Debug.Log($"Selected Block : {_blockIndex}");
         _onBlockClicked?.Invoke(_blockIndex);
     }

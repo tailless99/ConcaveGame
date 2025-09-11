@@ -58,20 +58,20 @@ public class GameManager : Singleton<GameManager> {
     // 씬 로드시 호출되는 함수
     protected override void OnSceneLoad(Scene scene, LoadSceneMode mode) {
         _canvas = FindFirstObjectByType<Canvas>();
-
+        
         if (scene.name == "Game") {
             // Block 초기화
             var blockContoroller = FindFirstObjectByType<BlockController>();
             if (blockContoroller != null) {
                 blockContoroller.InitBlocks();
             }
-
+            
             // Game UI Controller 할당 및 초기화
             _gameUIController = FindFirstObjectByType<GameUIController>();
             if (_gameUIController != null) {
                 _gameUIController.SetGameTurnPanel(GameUIController.GameTurnPanelType.None);
             }
-
+            
             // GameLogic 생성
             if (_gameLogic == null) {
                 _gameLogic = new GameLogic(blockContoroller, _gameType);
