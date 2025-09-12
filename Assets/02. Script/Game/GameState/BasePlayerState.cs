@@ -2,6 +2,11 @@ using UnityEngine;
 
 public abstract class BasePlayerState
 {
+    public int rateTier;       // 급수
+    public int currentEXP;     // 현재 경험치
+    protected int minTier = 18;   // 최하급 티어
+    protected int maxTier = 1;    // 최고 티어
+
     // 게임 결과 저장
     protected GameLogic.GameResult gameResult;
 

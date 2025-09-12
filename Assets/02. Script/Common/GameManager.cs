@@ -83,8 +83,8 @@ public class GameManager : Singleton<GameManager> {
     /// Game Scene에서 플레이어의 급수를 표시하는 UI를 제어하는 함수
     /// </summary>
     /// <param name="type"></param>
-    public void SetPlayerRateTierPanel(GameUIController.GameTurnPanelType type, int rateTier) {
-        _gameUIController.SetPlayerRateTierPanel(type, rateTier);
+    public void SetPlayerRateTierPanel(GameUIController.GameTurnPanelType type, int rateTier, int currentEXP) {
+        _gameUIController.SetPlayerRateTierPanel(type, rateTier, currentEXP);
     }
 
     // 씬 로드시 호출되는 함수
