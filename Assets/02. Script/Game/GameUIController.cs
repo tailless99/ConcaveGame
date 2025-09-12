@@ -8,9 +8,9 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private GameObject playerATurnPanel;
     [SerializeField] private GameObject playerBTurnPanel;
 
-    // 급수 패널
-    [SerializeField] private TextMeshProUGUI playerARateTierText;
-    [SerializeField] private TextMeshProUGUI playerBRateTierText;
+    // 급수 UI 컨테이너
+    [SerializeField] private RateTierPanelController rateTierPanelController;
+
 
 
     public enum GameTurnPanelType { None, ATurn, BTurn }
@@ -38,16 +38,8 @@ public class GameUIController : MonoBehaviour
         }
     }
 
-    public void SetPlayerRateTierPanel(GameTurnPanelType type, int rateTier) {
-        switch (type) {
-            case GameTurnPanelType.None:
-                break;
-            case GameTurnPanelType.ATurn:
-                playerARateTierText.text = $"{rateTier.ToString()} 급";
-                break;
-            case GameTurnPanelType.BTurn:
-                playerBRateTierText.text = $"{rateTier.ToString()} 급";
-                break;
-        }
+    // 플레이어 급수 패널 설정
+    public void SetPlayerRateTierPanel(GameTurnPanelType type, int rateTier, int currentEXP) {
+        rateTierPanelController.SetPlayerRateTierPanel(type, rateTier, currentEXP);
     }
 }

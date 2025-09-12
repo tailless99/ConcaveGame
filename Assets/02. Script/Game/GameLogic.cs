@@ -24,11 +24,14 @@ public class GameLogic
         switch (gameType) {
             case Constants.GameType.SinglePlay:
                 firstPlayerState = new PlayerState(true);
+                GameManager.Instance.SetPlayerRateTierPanel(GameUIController.GameTurnPanelType.ATurn, firstPlayerState.rateTier, firstPlayerState.currentEXP);
                 secondPlayerState = new AIState();
                 break;
             case Constants.GameType.DualPlay:
                 firstPlayerState = new PlayerState(true);
+                GameManager.Instance.SetPlayerRateTierPanel(GameUIController.GameTurnPanelType.ATurn, firstPlayerState.rateTier, firstPlayerState.currentEXP);
                 secondPlayerState = new PlayerState(false);
+                GameManager.Instance.SetPlayerRateTierPanel(GameUIController.GameTurnPanelType.ATurn, secondPlayerState.rateTier, secondPlayerState.currentEXP);
                 break;
             case Constants.GameType.MultiPlay:
                 break;
