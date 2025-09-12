@@ -7,6 +7,11 @@ public class GameManager : Singleton<GameManager> {
     [SerializeField] private GameObject signInPanel;    // 로그인 패널
     [SerializeField] private GameObject registerPanel;  // 회원가입 패널
 
+    // 급수 저장 임시 변수
+    // 멀티 모드 생성 후, 서버로 데이터 저장
+    private int rateTier = 18;  // 최하급 티어
+    private int tierEXP = 0;    // 경험치
+
     private Constants.GameType _gameType;
 
     // Panel을 띄우기 위한 Canvas 할당
@@ -19,6 +24,25 @@ public class GameManager : Singleton<GameManager> {
     private GameUIController _gameUIController;
 
 
+    /// <summary>
+    /// PlayerState에서 급수 정보를 설정하기 위한 메서드
+    /// 멀티 서버 생성 후, 삭제할 것. 정보는 서버에서 저장
+    /// </summary>
+    /// <param name="rateTier"></param>
+    /// <param name="tierEXP"></param>
+    public void SetTierInfo(int rateTier, int tierEXP) { 
+        this.rateTier = rateTier;
+        this.tierEXP = tierEXP;
+    }
+
+    /// <summary>
+    /// 플레이어의 급수 정보를 가져오는 메서드
+    /// </summary>
+    /// <returns></returns>
+    public void GetTierInfo(out int tier, out int tierExp) {
+        tier = this.rateTier;
+        tierExp = this.tierEXP;
+    }
 
     /// <summary>
     /// Main에서 Game Scene으로 전환시 호출될 메서드
@@ -53,6 +77,14 @@ public class GameManager : Singleton<GameManager> {
     /// <param name="type"></param>
     public void SetGameTurnPanel(GameUIController.GameTurnPanelType type) {
         _gameUIController.SetGameTurnPanel(type);
+    }
+
+    /// <summary>
+    /// Game Scene에서 플레이어의 급수를 표시하는 UI를 제어하는 함수
+    /// </summary>
+    /// <param name="type"></param>
+    public void SetPlayerRateTierPanel(GameUIController.GameTurnPanelType type, int rateTier) {
+        _gameUIController.SetPlayerRateTierPanel(type, rateTier);
     }
 
     // 씬 로드시 호출되는 함수

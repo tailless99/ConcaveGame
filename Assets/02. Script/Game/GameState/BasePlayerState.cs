@@ -1,6 +1,10 @@
+using UnityEngine;
+
 public abstract class BasePlayerState
 {
-    
+    // 게임 결과 저장
+    protected GameLogic.GameResult gameResult;
+
     public abstract void OnEnter(GameLogic gameLogic);      // 상태가 시작
     public abstract void OnExit(GameLogic gameLogic);       // 상태가 종료
     public abstract void HandleMove(GameLogic gameLogic, int row, int col);     // 마커 표시
@@ -10,7 +14,7 @@ public abstract class BasePlayerState
     protected void ProcessMove(GameLogic gameLogic, Constants.PlayerType playerType, int row, int col) {
         if(gameLogic.SetNewBoardValue(playerType, row, col)) {
             // 새롭게 놓여진 Markwer를 기반으로 게임의 결과를 판단
-            var gameResult = gameLogic.CheckGameResult();
+            gameResult = gameLogic.CheckGameResult();
 
             if(gameResult == GameLogic.GameResult.None) {
                 HandleNextTurn(gameLogic);
